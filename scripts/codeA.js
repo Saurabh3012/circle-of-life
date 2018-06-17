@@ -19,16 +19,15 @@ mongoose.connect(connectionString)
     });
 
 const uniqid = require('uniqid');
-const uniq = uniqid();
-// call
-
-
 const Processed = require('../Models/Processed');
-let list = [];
-// cities.forEach(function (item) {
-let obj = {};
 
 const job = new CronJob('* * */2 * *', function() {
+
+        const uniq = uniqid();
+        // call
+        let list = [];
+        // cities.forEach(function (item) {
+        let obj = {};
 
         async.forEach(cities, function (item, cb) {
 
@@ -71,7 +70,6 @@ const job = new CronJob('* * */2 * *', function() {
             obj['cTime'] = cTime;
             // cTime
             // console.log("Process 1 complete: ", cTime);
-
             async.forEach(cities, function (city, callback) {
                 const data = require("../data/"+city.substring(0,4)+".json");
 
@@ -82,8 +80,6 @@ const job = new CronJob('* * */2 * *', function() {
                 };
                 obj['numCols'] = Object.keys(data).length;
                 obj['numRows'] = data.cnt;
-
-
                 const stats = fs.statSync("../data/"+city.substring(0, 4)+".json");
                 // console.dir(stats.size/1000000.0 + " MB, " + Math.trunc(stats.ctimeMs));
                 innerObj['fileSize'] = stats.size/1000000.0;
@@ -91,11 +87,11 @@ const job = new CronJob('* * */2 * *', function() {
                 // stats.cTimeMs
 
                 let temp = data.list[0].main.temp_max;
-                async.forEach(data.list, function (tp, callback) {
+                async.forEach(data.list, function (tp, callback1) {
                     if(temp < tp.main.temp_max){
                         temp = tp.main.temp_max;
                     }
-                    callback();
+                    callback1();
                 }, function (err) {
                     // console.log("max temp: ", temp);
                     innerObj['maxTemp'] = temp;
