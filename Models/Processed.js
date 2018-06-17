@@ -1,9 +1,13 @@
 var mongoose = require("mongoose");
 
 var ProcessedSchema = new mongoose.Schema({
-    city: Object,
-    max_temp: Number,
-    call: String
+    call: String,
+    numCols: String,
+    numRows: String,
+    cTime: String,
+    rTime: String,
+    p2Finish: String,
+    results: Object
 });
 
 module.exports = mongoose.model('Processed', ProcessedSchema);
