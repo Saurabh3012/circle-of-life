@@ -97,16 +97,24 @@ class App1 extends Component {
                   <br />
                   <h1> ANALYSIS </h1>
                   <pre>
-
                     <h4> Number of Columns: {selectedItem.numCols}</h4>
                     <h4> Number of Rows: {selectedItem.numRows}</h4>
-                    <h4> Time elapsed in Process 1: {selectedItem.cTime - selectedItem.rTime}</h4>
-                    <h4> Time elapsed in Process 2: {selectedItem.p2Finish - selectedItem.cTime}</h4>
-
+                    <h4> Time elapsed in Process 1: {selectedItem.cTime - selectedItem.rTime} ms</h4>
+                    <h4> Time elapsed in Process 2: {selectedItem.p2Finish - selectedItem.cTime} ms</h4>
+                    {
+                      selectedItem.results.map((item, index)=>{
+                      return(
+                        <pre>
+                          <h4> City {index+1}: {item.city}  </h4>
+                          <h4> Country: {item.country}  </h4>
+                          <h4> Status: {item.status}  </h4>
+                          <h4> Filesize: {item.fileSize*1000} KB  </h4>
+                          <h4> Max Temp: {item.maxTemp}  </h4>
+                        </pre>
+                      );
+                    })
+                  }
                   </pre>
-
-
-
                   </div>
                 ):(<Spinner text={"Choose a call number from the side bar to see it's analysis"} />)}
 
