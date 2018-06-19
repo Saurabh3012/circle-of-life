@@ -45,4 +45,14 @@ Code B: To process the data and store it on a local database (mongodb, in this c
   ```
   This will run the api used to fetch ananlysed data from the local database.
 
-  
+  - Change the directory to dashboard, then run:
+  ```shell
+    npm install
+    npm start
+  ```
+  A prompt will appear. Press Y and press enter. This will run the dashboard on localhost:3001/
+
+  - To collect data, change the directory to scripts. Run codeA.js with node. This will run a process which collects data periodically.
+  ```shell
+    node codeA.js
+  ```
