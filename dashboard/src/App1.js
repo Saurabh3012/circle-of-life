@@ -16,7 +16,8 @@ class App1 extends Component {
       apiData : {},
       commands: [],
       selectedItem: {},
-      success: false
+      success: false,
+      message: "Choose a call number to view analysis"
     }
 
     this.fetchData();
@@ -63,7 +64,7 @@ class App1 extends Component {
 
   render() {
 
-    const { apiData, success, commands, selectedItem } = this.state;
+    const { apiData, success, commands, selectedItem, message } = this.state;
 
     return (
 
@@ -116,7 +117,7 @@ class App1 extends Component {
                   }
                   </pre>
                   </div>
-                ):(<Spinner text={"Choose a call number from the side bar to see it's analysis"} />)}
+                ):(<Spinner text={message} />)}
 
              </div>
            </Content>

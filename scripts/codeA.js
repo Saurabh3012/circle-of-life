@@ -21,9 +21,10 @@ mongoose.connect(connectionString)
 const uniqid = require('uniqid');
 const Processed = require('../Models/Processed');
 
-const job = new CronJob('* * */2 * *', function() {
+const job = new CronJob('* */1 * * *', function() {
 
         const uniq = uniqid();
+        console.log(uniq)
         // call
         let list = [];
         // cities.forEach(function (item) {
@@ -46,7 +47,7 @@ const job = new CronJob('* * */2 * *', function() {
 
                     let d = new Date(response.headers.date);
                     let rTime = d.getTime();
-                    console.log("Request time ",rTime);
+                    // console.log("Request time ",rTime);
                     obj['rTime'] = rTime;
                     // rTime
 
@@ -103,9 +104,9 @@ const job = new CronJob('* * */2 * *', function() {
             }, function (err) {
 
                 let p2Finish = Date.now();
-                console.log("Process 2 finish: ", p2Finish);
+                // console.log("Process 2 finish: ", p2Finish);
                 obj['p2Finish'] = p2Finish;
-                console.log(list);
+                // console.log(list);
                 obj.results = list;
                 //p2Finish
 
